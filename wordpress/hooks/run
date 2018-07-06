@@ -1,6 +1,5 @@
-
 #!/bin/bash
 
 exec 2>&1
-
-exec php-fpm --nodaemonize
+echo "Running nginx for wordpress..."
+exec nginx -c {{pkg.svc_config_path}}/nginx.conf
