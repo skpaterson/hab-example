@@ -38,4 +38,3 @@ keepalive_timeout = 60
 [http.listen]
   port = 80
   bind = "127.0.0.1"
-  local_only = true
