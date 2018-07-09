@@ -1,5 +1,5 @@
 pkg_name=mysql
-pkg_origin=habskp_private
+pkg_origin=habskp
 pkg_version=5.7.21
 pkg_maintainer='The Habitat Maintainers <humans@habitat.sh>'
 pkg_license=('GPL-2.0')
