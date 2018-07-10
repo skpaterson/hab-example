@@ -25,11 +25,7 @@ define('DB_USER', '{{bind.database.first.cfg.username}}');
 /** MySQL database password */
 define('DB_PASSWORD', '{{bind.database.first.cfg.password}}');
 /** MySQL hostname */
-{{#if bind.database.first.cfg.local_only ~}}
-define('DB_HOST', '127.0.0.1');
-{{else ~}}
 define('DB_HOST', '{{bind.database.first.sys.ip}}');
-{{/if ~}}
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
 /** The Database Collate type. Don't change this if in doubt. */
@@ -65,7 +61,7 @@ define('DB_COLLATE', '');
 $table_prefix  = 'wp_';
 /**
  * For developers: WordPress debugging mode.
- *s
+ *
  * Change this to true to enable the display of notices during development.
  * It is strongly recommended that plugin and theme developers use WP_DEBUG
  * in their development environments.
@@ -79,6 +75,8 @@ define('WP_DEBUG', false);
 /* That's all, stop editing! Happy blogging. */
 /** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )
-	define('ABSPATH', dirname(__FILE__) . '/');
+    define('ABSPATH', dirname(__FILE__) . '/');
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
+
+

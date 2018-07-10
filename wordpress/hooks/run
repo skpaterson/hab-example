@@ -1,5 +1,9 @@
 #!/bin/bash
 
 exec 2>&1
-echo "Running nginx for wordpress..."
-exec nginx -c {{pkg.svc_config_path}}/nginx.conf
+ls -al {{pkg.svc_config_path}}/
+echo 'wordpress attempt'
+#cat {{pkg.svc_config_path}}/nginx.conf
+#exec {{pkgPathFor "core/php"}}/sbin/php-fpm -y "{{ pkg.svc_config_path }}/php-fpm.conf" &
+exec {{ pkgPathFor "core/nginx" }}/bin/nginx -c "{{ pkg.svc_config_path }}/nginx.conf" 2>&1
+#while true; do sleep 30; done

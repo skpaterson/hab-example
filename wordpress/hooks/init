@@ -21,15 +21,17 @@ fi
 # create database
 mysql -h $MYSQL_IP -u {{bind.database.first.cfg.username}} -p{{bind.database.first.cfg.password}} -e "create database IF NOT EXISTS {{bind.database.first.cfg.username}}"
 
+############# PROJECT SETUP #############################
+#php
+cp -n {{pkgPathFor "core/php"}}/etc/php-fpm.d/www.conf.default {{pkgPathFor "core/php"}}/etc/php-fpm.d/www.conf
+ls -al {{pkg.svc_var_path}}
 cp -r {{pkg.path}}/public_html/* {{pkg.svc_data_path}}
-
-if [ ! -f {{pkg.svc_data_path}}/wp-config.php ]; then
-    echo "Creating wp-config.php..."
-    cp {{pkg.svc_config_path}}/wp-config.php {{pkg.svc_data_path}}/wp-config.php
-fi
-
+cp -n {{pkg.svc_config_path}}/wp-config.php {{pkg.svc_data_path}}
+# rename file so we can use fpm default
+cp -n {{pkgPathFor "core/php"}}/etc/php-fpm.d/www.conf.default {{pkgPathFor "core/php"}}/etc/php-fpm.d/www.conf
 chmod +x {{pkg.svc_data_path}}
-chown -RL hab:hab {{pkg.svc_data_path}}
+chown -R hab:hab {{pkg.svc_data_path}}
+ls -al {{pkg.svc_data_path}}/
 
+############# NGINX SETUP #############################
 mkdir -p {{pkg.svc_var_path}}/nginx
-chown hab:hab {{pkg.svc_var_path}}
